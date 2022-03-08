@@ -1,0 +1,17 @@
+{
+  "name": "geofencing-api",
+  "version": "1.0.0",
+  "description": "Helper geofencing functions",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [
+    "geofencing"
+  ],
+  "author": "Paul Kilanowski",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^27.5.1"
+  }
+}
