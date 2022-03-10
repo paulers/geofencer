@@ -1,5 +1,7 @@
-const { degreesToRadians, radiansToDegrees } = require('./helpers');
 const EARTH_RADIUS = 6378137;
+const degreesToRadians = (angle) => {
+    return angle * Math.PI / 180;
+}
 
 /**
  * This function will return a distance from one coordinate location to another
