@@ -7,38 +7,27 @@ describe('distance to', () => {
     });
     test('from tower of london to buckingham palace', () => {
         expect(distanceTo([51.50926624807988, -0.07020881841771057], [51.50294271525039, -0.13084189488481243])).toBe(4259.7544113594195);
-    })
+    });
     test('tests distance with invalid from', () => {
         expect(() => distanceTo([51], [51.00089831528412, 0])).toThrowError(new Error('From must be an array of two numbers representing latitude and longitude.'));
     });
     test('tests distance with invalid to', () => {
         expect(() => distanceTo([51, 0], [51.00089831528412])).toThrowError(new Error('To must be an array of two numbers representing latitude and longitude.'));
-    }); 
+    });
 });
 
-describe('polygon 0', () => {
-    const polygon = [
-        [4.031467437744141, 51.96441845630598],
-        [4.031510353088379, 51.96431268689964],
-        [4.03048038482666,  51.962779002459634],
-        [4.045500755310059, 51.96000237127137],
-        [4.052796363830566, 51.960557711268194],
-        [4.052152633666992, 51.96198569681285],
-        [4.045286178588867, 51.96140393041545],
-        [4.031467437744141, 51.96441845630598]
-    ];
-
+describe('polygon negative tests', () => {
     const testData = [
-        [4.033248424530029, 51.963294643601216, true],
-        [4.043612480163573, 51.96090148972336, true],
-        [4.051637649536133, 51.96144359654604, true],
-        [4.051766395568848, 51.96009492841525, false],
-        [4.04545783996582, 51.961668370622995, false],
-        [4.030179977416992, 51.96366484383961, false]
+        [null, [1, 0], 'Edges and point must all be provided'],
+        [[1, 0], null, 'Edges and point must all be provided'],
+        [[0, 1], 1, 'Queried point must be a lat/long number pair in an array'],
+        [1, [0, 1], 'Edges must be a two dimensional array of lat/long pairs'],
+        [[1], [1, 0, 1], 'Queried point must contain 2 elements'],
+        [[1, 2], [1, 0], 'Polygon must have at least 3 edges']
     ];
 
-    test.each(testData)('valid input inside v1', (lat, long, expected) => {
-        expect(isInsidePolygon(polygon, [lat, long])).toBe(expected);
+    test.each(testData)('negative tests', (edges, point, expected) => {
+        expect(() => isInsidePolygon(edges, point)).toThrowError(new Error(expected));
     });
 });
 
@@ -113,7 +102,7 @@ describe('polygon 3 empire state building', () => {
     test.each(testData)('valid input inside v1', (lat, long, expected) => {
         expect(isInsidePolygon(polygon, [lat, long])).toBe(expected);
     });
-})
+});
 
 describe('circle red pyramid egypt', () => {
     const circle = {
@@ -127,8 +116,22 @@ describe('circle red pyramid egypt', () => {
         [30.032315426035968, 31.275357935351554, false], // cairo
         [31.216552730740375, 29.895073578154857, false], // alexandria
         [31.779216947627045, 35.22792555221807, false] // israel
-    ]
+    ];
     test.each(testData)('valid input', (lat, long, expected) => {
         expect(isInsideCircle(circle.center, [lat, long], circle.radius)).toBe(expected);
     });
-})
+
+    const negativeTestData = [
+        [null, [1, 0], 100, 'Center, point and radius must all be provided'],
+        [[1, 0], null, 100, 'Center, point and radius must all be provided'],
+        [[1, 0], [0, 1], null, 'Center, point and radius must all be provided'],
+        [[1, 0], [0, 1], 'abc', 'Radius must be a number'],
+        [1, [0, 1], 100, 'Center of the circle must be a lat/long number pair in an array'],
+        [[1, 0], 1, 100, 'Queried point must be a lat/long number pair in an array'],
+        [[1, 0, 3], [1, 0], 100, 'Center of the circle location must contain at least two elements'],
+        [[1, 0], [1, 0, 1], 100, 'Queried point must contain 2 elements']
+    ];
+    test.each(negativeTestData)('circle - negative tests', (center, point, radius, expected) => {
+        expect(() => isInsideCircle(center, point, radius)).toThrowError(new Error(expected));
+    });
+});

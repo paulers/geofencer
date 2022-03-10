@@ -39,12 +39,12 @@ module.exports.distanceTo = (from, to) => {
  * @returns {Boolean} True if the point is inside the circle's area, false otherwise
  */
 module.exports.isInsideCircle = (center, point, radius) => {
-    if (!center || !point || !radius) throw new Error('Center, point and radius must all be provided.')
-    if (!Number.isInteger(radius)) throw new Error('Radius must be a number.');
-    if (!Array.isArray(center)) throw new Error('Center of the circle must be a lat/long number pair in an array.');
-    if (!Array.isArray(point)) throw new Error('Queried point must be a lat/long number pair in an array.');
-    if (center.length != 2) throw new Error('Center of the circle location must contain at least two elements.');
-    if (point.length != 2) throw new Error('Queried point must contain at least 2 elements.');
+    if (!center || !point || !radius) throw new Error('Center, point and radius must all be provided')
+    if (!Number.isInteger(radius)) throw new Error('Radius must be a number');
+    if (!Array.isArray(center)) throw new Error('Center of the circle must be a lat/long number pair in an array');
+    if (!Array.isArray(point)) throw new Error('Queried point must be a lat/long number pair in an array');
+    if (center.length != 2) throw new Error('Center of the circle location must contain at least two elements');
+    if (point.length != 2) throw new Error('Queried point must contain 2 elements');
 
     return this.distanceTo(center, point) <= radius;
 }
@@ -58,8 +58,8 @@ module.exports.isInsideCircle = (center, point, radius) => {
  module.exports.isInsidePolygon = (edges, point) => {
     if (!point || !edges) throw new Error('Edges and point must all be provided');
     if (!Array.isArray(point)) throw new Error('Queried point must be a lat/long number pair in an array');
-    if (point.length != 2) throw new Error('Queried point must contain at least two elements');
     if (!Array.isArray(edges)) throw new Error('Edges must be a two dimensional array of lat/long pairs');
+    if (point.length != 2) throw new Error('Queried point must contain 2 elements');
     if (edges.length < 3) throw new Error('Polygon must have at least 3 edges');
 
     const x = point[0];
