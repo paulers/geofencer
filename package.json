@@ -1,13 +1,19 @@
 {
-  "name": "geofencing-api",
+  "name": "geofencer",
   "version": "1.0.0",
-  "description": "Helper geofencing functions",
+  "description": "Geofencing helper functions.",
   "main": "index.js",
   "scripts": {
     "test": "jest"
   },
   "keywords": [
-    "geofencing"
+    "geofencing",
+    "location",
+    "distance",
+    "circle",
+    "geofence",
+    "boundary",
+    "geolocation"
   ],
   "author": "Paul Kilanowski",
   "license": "ISC",
