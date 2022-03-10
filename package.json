@@ -15,6 +15,10 @@
     "boundary",
     "geolocation"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/paulers/geofencer.git"
+  },
   "author": "Paul Kilanowski",
   "license": "ISC",
   "devDependencies": {
