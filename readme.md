@@ -5,7 +5,7 @@ This small library has everything you need for figuring out whether a point is w
 ## Installation
 
 ```
-$ npm i --save geofence-helpers
+$ npm i --save geofencer
 ```
 
 ## Usage
