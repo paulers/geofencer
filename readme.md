@@ -1,4 +1,4 @@
-# Geofencing Helpers
+# Geofencer
 
 This small library has everything you need for figuring out whether a point is within a circle or a polygon. The library uses a ray casting algorithm to determine whether a point is inside a polygon area. Determining whether a point is in a circle will also take Earth's dimensions into account.
 
@@ -13,7 +13,7 @@ $ npm i --save geofencer
 Import whatever you need:
 
 ```JS
-const { distanceTo, isInsidePolygon, isInsideCircle } = require('geofence-helpers');
+const { distanceTo, isInsidePolygon, isInsideCircle } = require('geofencer');
 ```
 
 Are geo coordinates inside a polygon area?
